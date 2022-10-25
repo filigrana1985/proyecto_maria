@@ -2,16 +2,6 @@
 
   session_start();
 
-  if(!isset($_SESSION['usuario'])){
-    echo '<script>
-            alert("Por favor debes iniciar sesion");
-          </script>';
-      header('location: Index.html');
-      session_destroy();
-      die();
-      
-  }
- 
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +36,9 @@
   <!-- scroll -->
   <script src="./js/smooth-scroll.polyfills.min.js" before></script>
   <link rel="shortcut icon" href="./img/favicon.ico" />
+  <!--Stylesheet-->
+
+    
   <title>I.D.E.A. Ingeniería en Diseños Electronicos y Automatización</title>
 </head>
 
@@ -70,13 +63,27 @@
               height="24"></a></li>
         <li class="nav-item " data-toggle="modal" data-target="#contactomodal"><span
             class="pointer nav-link p-1 ml-4 mr-4 icons-a animated fadeInLeft"><img src="./img/envelope.svg" alt="Email"
-              width="24" height="24"></span></li>
+              width="24" height="24"></span>
+        </li>
       </ul>
+      <?php
+            
+            if(!isset($_SESSION['usuario'])){
+              echo '<button type="button" class="btn btn-dark btn-round" data-toggle="modal" data-target="#loginModal"> Iniciar Sesion</button> ';
+            }else{
+              echo '';
+            }
+          
+      ?>
+      
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsmenu"
         aria-controls="navbarsmenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon active"></span>
       </button>
 
+      
+
+    <!-- Navbar del submenu -->
       <div class="navbar-collapse collapse" id="navbarsmenu">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item d-block d-sm-block d-md-none text-center">
@@ -114,15 +121,60 @@
           <li class="nav-item active">
             <a data-scroll href="#contacto" class="nav-link nav-close navcontac">Contactanos</a>
           </li>
-          <li class="nav-item active">
-            <a data-scroll data-toggle="modal" href="#" data-target="#reporte" class="nav-link nav-close navcontac">Reportes de Mantenimientos</a>
-          </li>
-          <li class="nav-item active">
-            <a  href="/logout.php" data-target="#cerrar" class="nav-link nav-close navcontac">Cerrar Sesion</a>
-          </li>
+
+          <?php
+            
+            if(!isset($_SESSION['usuario'])){
+              echo '<li class="nav-item inactive">
+                      <a data-scroll data-toggle="modal" href="#" class="nav-link nav-close navcontac">Reportes de Mantenimientos</a>
+                    </li>';
+            
+            }else{
+              echo '<li class="nav-item active">
+                      <a data-scroll data-toggle="modal" href="#" data-target="#reporte" class="nav-link nav-close navcontac">Reportes de Mantenimientos</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a  href="/logout.php" data-target="#cerrar" class="nav-link nav-close navcontac">Cerrar Sesion</a>
+                    </li>
+                    ';
+            }
+          
+          ?>
         </ul>
       </div>
     </nav>
+
+     
+    <!-- Modal de Iniciar sesion  -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-title text-center">
+                <h4>Iniciar Sesion</h4>
+              </div>
+              <div class="d-flex flex-column text-center">
+                <form id="login"  method="post" >
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa tu Usuario">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu Contraseña">
+                  </div>
+                  <button type="button" class="btn btn-warning btn-block btn-round" id="btnIniciar">Iniciar sesion</button>
+                </form>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <main>
       <!-- Presentacion inicial escritorio -->
       <div class="presentacion  animated  fadeIn margin58px  d-none d-sm-none d-md-block ">
@@ -1103,9 +1155,11 @@
   <!-- Cierre del menu al hacer click en un link -->
   <script>
     
-    
     $(document).ready(() => {
-
+      $('#loginModal').modal('show');
+        $(function () {
+         $('[data-toggle="tooltip"]').tooltip()
+       });
       $('.nav-close').click(function () {
         $('.navbar-toggler-icon').click();
       });
@@ -1116,6 +1170,19 @@
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
     });
+
+    $("#btnIniciar").click(function () {
+      $.ajax({
+        url: "database.php",
+        type: "post",
+        data: $("#login").serialize(), 
+        success: function (resultado) {
+          alert(resultado);
+          location.reload()
+        }
+      });
+    });
+
     $("#buscar").click(function () {
       $.ajax({
         url: "enviar.php",
@@ -1127,8 +1194,7 @@
         }
       });
     });
-
-    
+ 
     
   </script>
   <!-- iniciacion y markado del mapa -->
