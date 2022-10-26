@@ -2,7 +2,7 @@
 /* // llamando a los campos
 $nombre = $_POST['nombre'];
 $telefono = $_POST['telefono']; 
-$email  = $_POST['email']; 
+$email  = $_POST['correo']; 
 $consulta = $_POST['consulta']; 
 // Datos para el correo
 $destinatario = "inbox@latinaindustrial.com";

@@ -40,6 +40,14 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `usuario`, `password`) VALUES
 (1, 'admin', 'admin');
 
+INSERT INTO `usuarios` (`id`, `usuario`, `password`) VALUES
+(2, 'lucerna', 'lucerna123');
+
+INSERT INTO `usuarios` (`id`, `usuario`, `password`) VALUES
+(3, 'sayonara', 'sayonara123');
+
+INSERT INTO `usuarios` (`id`, `usuario`, `password`) VALUES
+(4, 'semillas', 'semillas123');
 --
 -- Índices para tablas volcadas
 --
@@ -59,7 +67,18 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
+
+
+CREATE TABLE `contactos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `telefono` int(200) NOT NULL
+   `correo` varchar(200) NOT NULL
+    `consulta` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `contactos`
+  ADD PRIMARY KEY (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

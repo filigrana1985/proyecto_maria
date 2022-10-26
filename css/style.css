@@ -36,10 +36,10 @@ letter-spacing: 0px;
 color: #212529;
 }
 .logoa{
-    color: white;
+    color: rgb(56, 59, 249);
 }
 .logob{
-    color:rgb(255, 204, 0);
+    color:rgb(0, 136, 255);
 }
 .logolah1{
     letter-spacing: -0.2em;
@@ -47,10 +47,10 @@ color: #212529;
     letter-spacing: -0.2em;
 }
 .colorsmall{
-    color: #000;
+    color: rgb(0, 0, 0);
 }
 .a.nav-link{
-    color: #000;
+    color: rgb(49, 191, 252);
 }
 body{
     width: 98.7vw;
@@ -141,7 +141,7 @@ body{
             opacity: 95% !important;
 }
 .bg-yellow{
-    background: rgb(255, 204, 0);
+    background:rgb(255, 204, 0);
 }
 .bg-yellow2{
     /* background: rgba(237,211,92,0.7);*/
@@ -154,7 +154,7 @@ body{
 
 
 .flechas_left:hover {
-    color: grey;
+    color: rgb(3, 0, 0);
 }
 .flechas__left {
     position: absolute;
@@ -168,7 +168,7 @@ body{
     cursor: pointer;
 }
 .flechas__left:hover {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 .flechas__right {
     position: absolute;
@@ -182,7 +182,7 @@ body{
     cursor: pointer;
 }
 .flechas__right:hover {
-    color: rgb(255, 255, 255);
+    color: rgb(3, 0, 0);
 }
 .todo{
     width: 100%!important;
@@ -273,7 +273,7 @@ footer{
     padding:0 10px; 
 }
 .border-yellow{
-    border: 1px solid rgb(255, 204, 0);;
+    border: 1px solid rgb(49, 191, 252);;
 }
 .zindex-300{
     z-index:300;
@@ -316,3 +316,4 @@ footer{
 .altofoto{
     height: 445px !important;
 }
+
