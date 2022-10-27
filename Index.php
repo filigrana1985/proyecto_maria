@@ -48,7 +48,7 @@ session_start();
     <div class="containert-fluid">
         <!-- Menu de navegacion  -->
         <nav class="navbar navbar-dark bg-yellow fixed-top  ">
-            <a class="navbar-brand" href="Index.php">
+            <a class="navbar-brand" href="index.php">
                 <h5> <span class="logo"><span class="logolah5"></span>I.D.E.<span class="logoa">A</span></span> <small
                         class="colorsmall">Ingeniería en Diseños Eléctricos y Automatización</small></h5>
             </a>
@@ -99,7 +99,7 @@ session_start();
                                 src="./img/envelope.svg" alt="Email" width="24" height="24"></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link nav-close" href="Index.php">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link nav-close" href="index.php">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link nav-close" href="#quienesomos">¿Quienes Somos?</a>
@@ -131,9 +131,6 @@ session_start();
                                 href="#certificacion_retie">Certificación RETIE para instalaciones nuevas eléctricas</a>
                         </div>
                     </li>
-                    <li class="nav-item active">
-                        <a data-scroll href="#contacto" class="nav-link nav-close navcontac">Contactanos</a>
-                    </li>
 
                     <?php
 
@@ -145,20 +142,32 @@ session_start();
             echo '<li class="nav-item active">
                       <a data-scroll data-toggle="modal" href="#" data-target="#reporte" class="nav-link nav-close navcontac">Reportes de Mantenimientos</a>
                     </li>
+                    ';
+          }
+
+          if (!isset($_SESSION['usuario'])) {
+            echo '<li class="nav-item inactive">
+                      <a data-scroll data-toggle="modal" href="#" class="nav-link nav-close navcontac">Ordenes de Trabajo (OT)</a>
+                    </li>';
+          } else {
+            echo '<li class="nav-item active">
+                      <a data-scroll data-toggle="modal" href="#" data-target="#reporte" class="nav-link nav-close navcontac">Ordenes de Trabajo (OT)</a>
+                    </li>
+                                        
                     <li class="nav-item active">
                       <a  href="logout.php" data-target="#cerrar" class="nav-link nav-close navcontac">Cerrar Sesion</a>
                     </li>
                     ';
           }
-
           ?>
+
                 </ul>
             </div>
         </nav>
 
 
         <!-- Modal de Iniciar sesion  -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="loginModal" tabi="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -430,12 +439,12 @@ session_start();
                                 </div>
                             </div>
                         </div>
-                        <a class="carousel-control-prev zindex-300" href="#carouselExampleIndicators" role="button"
+                        <a class="carousel-control-prev zi-300" href="#carouselExampleIndicators" role="button"
                             data-slide="prev">
                             <span class="flechas__left" aria-hidden="true">❮</span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next zindex-300" href="#carouselExampleIndicators" role="button"
+                        <a class="carousel-control-next zi-300" href="#carouselExampleIndicators" role="button"
                             data-slide="next">
                             <span class="flechas__right" aria-hidden="true">❯</span>
                             <span class="sr-only">Next</span>
@@ -723,7 +732,7 @@ session_start();
 
         <!-- inicio del modal de Reporte -->
 
-        <div class="modal" id="reporte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal" id="reporte" tabi="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true" class="responsive">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -765,7 +774,7 @@ session_start();
             </div>
         </div>
 
-        <div class="modal" id="contactomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal" id="contactomodal" tabi="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -1138,7 +1147,8 @@ session_start();
             data: $("#guardarbd").serialize(),
             success: function(resultado) {
                 alert(resultado);
-                location.reload()
+                location.reload();
+                location.destroy();
             }
         });
     });
